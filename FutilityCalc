@@ -1,0 +1,85 @@
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class FutilityCalc {
+	public static void main(String []args) {
+		
+		
+		System.out.println("Welcome to Futility Calculator.\n\nHere you will find out just how unlikely you are to win the lottery.\n\nCurrently this program is set up for a 6-digit lottery system.\nPlease enter 6 unique numbers from 1-49.");
+		
+		Scanner userinput = new Scanner(System.in);  // Creates scanner for user input
+		System.out.println("\nEnter first number: ");
+		int a = userinput.nextInt(); // Scans the next user input as an integer
+			/*if (a >= 1 && a <= 49){} // I don't want these to be here, I want it to give an exception and loop back, not restart the entire program
+				else {
+					System.out.println("Please enter a number between 1 and 49");
+					restart(args);
+				}*/
+		System.out.println("Enter second number: ");
+		int b = userinput.nextInt();
+			
+		System.out.println("Enter third number: ");
+		int c = userinput.nextInt();
+			
+		System.out.println("Enter fourth number: ");
+		int d = userinput.nextInt();
+			
+		System.out.println("Enter fifth number: ");
+		int e = userinput.nextInt();
+			
+		System.out.println("Enter sixth number: ");
+		int f = userinput.nextInt();
+			
+		
+		// Need to implement code so that user can't enter numbers less than 1 or greater than 49 or words and can't enter same number twice
+		
+		System.out.println("You've entered \n" + a + "\n" + b + "\n" + c + "\n" + d + "\n" + e + "\n" + f); // Figure out how to add spaces between numbers instead of breaking to next line for each
+		System.out.println("\nExcellent, now the program will randomly generate 6 unique numbers until they match your numbers.\nThis may take several years to complete and your computer may explode. \n");
+		
+		
+		long loops = 0; // Starts at 0, goes up by 1 for each loop, using long instead of int because this number can be huge and int has a max of 2 trillion or something
+		while (true){
+			int random1 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+
+			int random2 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+			
+			int random3 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+			
+			int random4 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+			
+			int random5 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+			
+			int random6 = ThreadLocalRandom.current().nextInt(1, 49 + 1);
+			
+			
+			
+		if (random1 == a && random2 == b && random3 == c && random4 == d && random5 == e && random6 == f) {
+			//&& random2 == b && random3 == c && random4 == d && random5 == e && random6 == f
+			// Above is commented out for debug/testing purposes, easy copy & paste
+			NumberFormat format = NumberFormat.getInstance(Locale.US);	// Adds commas between large numbers so they're easier to read, uses format.format(NumberGoesHere)
+			System.out.println("Winner! It took you " + format.format(loops) + " weeks to win the lottery.\n");
+					if (loops >= 104){
+						System.out.println("That's " + format.format(loops / 52) + " years.\n");
+					} else {
+						System.out.println("That's " + format.format(loops * 7) + " days.\n");
+					}
+			System.out.println("If each play costs $3, then you spent $" + format.format(loops * 3) + " before winning.");
+			break;
+		} else {
+			//System.out.println("Loser!");
+			// Used the above code to figure out if loops was working by counting the number of times it said "Loser!"
+			loops++;
+			}
+		
+		}
+		
+	}	
+
+
+private static void restart(String[] strArr) {
+    
+	main(strArr);
+	}
+}
